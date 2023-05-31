@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport">
+    <title>Title</title>
+    <style>
+        .completado{
+            text-decoration: line-through;
+            color: red;
+        }
+        .aparecer-enter{ /*Entrada*/
+            opacity: 0;
+        }
+        .aparecer-enter-active{ /*Transcurso Entrada*/
+            transition: opacity 1s;
+        }
+        .aparecer-leave-to{ /*Salida*/
+            opacity: 0;
+        }
+        .aparecer-leave-active{ /*Trancurso Salida*/
+            transition: opacity 1s;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h2>Listado de tareas</h2>
+        <button @click="btnMostrar">aparecer/ocultar</button>
+        <transition name="aparecer">    <!-- Envuelve el elemento que hará la transicion -->
+            <ul v-if="mostrar">         <!-- Controla con un v-if para mostrar o no -->
+                <li v-bind:class="{completado: tarea.completado}" @click="completarTarea(tarea)" v-for="tarea in tareas">
+                    {{tarea.titulo}}
+                </li>
+            </ul>
+        </transition>
+        <hr>
+        <pre> {{tareas}} </pre>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="codigo.js"></script>
+</body>
+</html>
