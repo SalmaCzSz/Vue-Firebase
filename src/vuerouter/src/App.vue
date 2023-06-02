@@ -1,9 +1,16 @@
 <template>
   <div id="app">
     <h1>6 pasos para trabajar con rutas en Vue</h1>
-    <router-link to="/"> Inicio </router-link>
-    <router-link to="/blog"> Blog </router-link>
+    <router-link tag="li" exact to="/"> Inicio </router-link>
+    <router-link tag="li" to="/blog"> Blog </router-link>
     <hr>
+    <router-link active-class="activo" tag="li" exact to="/">
+        <a> Inicio </a>
+    </router-link>
+    <router-link active-class="activo" tag="li" to="/blog">
+        <a> Blog </a>
+    </router-link>
+
     <router-view></router-view>
   </div>
 </template>
@@ -17,6 +24,16 @@ export default {
 </script>
 
 <style>
+.router-link-active {
+    color: pink;
+}
+.router-link-active a{
+    color: MediumVioletRed;
+}
+.activo{
+    color: blue;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
