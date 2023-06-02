@@ -10,6 +10,13 @@ const router = new VueRouter({
     routes
 })
 
+Vue.directive('alerta', {
+    bind(el, binding){
+        el.style.color = 'red'
+        el.style.fontSize = binding.value + 'px'
+    }
+})
+
 new Vue({
   render: h => h(App),
   router,

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Blog</h1>
+        <h1 v-alerta="45">Blog</h1>
         <button @click="volverInicio">Volver a inicio</button>
     </div>
 </template>
