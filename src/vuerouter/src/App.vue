@@ -10,6 +10,9 @@
     <router-link active-class="activo" tag="li" to="/blog">
         <a> Blog </a>
     </router-link>
+    <router-link active-class="activo" tag="li" to="/posts/01">
+        <a> Posts </a>
+    </router-link>
 
     <router-view></router-view>
   </div>
