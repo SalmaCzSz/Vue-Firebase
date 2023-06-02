@@ -17,6 +17,27 @@ Vue.directive('alerta', {
     }
 })
 
+Vue.directive('topfix', {
+    bind(el, binding){
+        console.log(el, binding)
+        el.style.position = 'fixed'
+
+        if(binding.expression){
+            el.style.top = binding.expression + 'px'
+        }
+        if(binding.arg){
+            let color = 'DarkMagenta'
+            let modificadores = Object.keys(binding.modifiers)
+
+            if(modificadores.length > 0){
+                color = modificadores[0]
+            }
+
+            el.style.backgroundColor = color
+        }
+    }
+})
+
 new Vue({
   render: h => h(App),
   router,
