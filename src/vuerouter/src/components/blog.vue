@@ -1,12 +1,18 @@
 <template>
     <div>
         <h1>Blog</h1>
+        <button @click="volverInicio">Volver a inicio</button>
     </div>
 </template>
 
 <script>
     export default{
-        name: "comBlog"
+        name: "comBlog",
+        methods:{
+            volverInicio(){
+                this.$router.push('/', () => console.log('Has vuelto'))
+            }
+        }
     }
 </script>
 
