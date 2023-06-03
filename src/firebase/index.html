@@ -16,6 +16,7 @@
     <ul>
         <li v-for="usuario in usuarios">
             {{usuario.data.nombre}} -- {{usuario.data.edad}}
+            <button @click="updateUsuario(usuario.id)">Actualizar</button>
             <button @click="deleteUsuario(usuario.id)">Eliminar</button>
         </li>
     </ul>
@@ -65,6 +66,10 @@
                 },
                 deleteUsuario(id){
                     colecion.doc(id).delete().then(()=>{ this.$mount() })
+                },
+                updateUsuario(id){
+                    colecion.doc(id).set({nombre: this.nombre, edad: this.edad})
+                            .then(()=>{ this.$mount() })
                 }
             }
         })
