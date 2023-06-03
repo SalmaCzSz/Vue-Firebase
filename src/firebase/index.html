@@ -5,26 +5,27 @@
     <title>Title</title>
 </head>
 <body>
-    <div id="main">
-        <form @submit.prevent="addUsuario">
-            <input v-model="nombre" id="nombre" type="text" placeholder="Introduce tu nombre"/>
-            <input v-model="edad" id="edad" type="text" placeholder="Introduce tu edad"/>
-            <input type="submit" value="Añadir usuario"/>
-        </form>
-        <hr>
-        <h2>Listado</h2>
-        <ul>
-            <li v-for="usuario in usuarios">
-                {{usuario.data.nombre}} -- {{usuario.data.edad}}
-            </li>
-        </ul>
-    </div>
+<div id="main">
+    <form @submit.prevent="addUsuario">
+        <input v-model="nombre" id="nombre" type="text" placeholder="Introduce tu nombre"/>
+        <input v-model="edad" id="edad" type="text" placeholder="Introduce tu edad"/>
+        <input type="submit" value="Añadir usuario"/>
+    </form>
+    <hr>
+    <h2>Listado</h2>
+    <ul>
+        <li v-for="usuario in usuarios">
+            {{usuario.data.nombre}} -- {{usuario.data.edad}}
+            <button @click="deleteUsuario(usuario.id)">Eliminar</button>
+        </li>
+    </ul>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
-    <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-app.js"> </script>
-    <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-firestore.js"> </script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+<script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-app.js"> </script>
+<script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-firestore.js"> </script>
 
-    <script>
+<script>
         const config = {
             apiKey: "AIzaSyBTOrL-XlwkI72wR_HVDYrGtuVWDbOZseE",
             authDomain: "pruebas-vue-8d32f.firebaseapp.com",
@@ -61,6 +62,9 @@
                         nombre: this.nombre,
                         edad: this.edad
                     }).then(()=>{ this.$mount() })
+                },
+                deleteUsuario(id){
+                    colecion.doc(id).delete().then(()=>{ this.$mount() })
                 }
             }
         })
