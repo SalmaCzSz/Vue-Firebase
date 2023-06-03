@@ -11,6 +11,13 @@
             <input v-model="edad" id="edad" type="text" placeholder="Introduce tu edad"/>
             <input type="submit" value="Añadir usuario"/>
         </form>
+        <hr>
+        <h2>Listado</h2>
+        <ul>
+            <li v-for="usuario in usuarios">
+                {{usuario.data.nombre}} -- {{usuario.data.edad}}
+            </li>
+        </ul>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
@@ -37,6 +44,16 @@
                 nombre: null,
                 edad: null,
                 usuarios: []
+            },
+            mounted(){
+                this.usuarios = []
+                colecion.get()
+                        .then(r => {
+                            //console.log(r.docs)
+                            r.docs.map(item => {
+                                this.usuarios.push({id: item.id, data: item.data()})
+                            })
+                        })
             },
             methods: {
                 addUsuario(){
