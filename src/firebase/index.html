@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="main">
+        <form @submit.prevent="addUsuario">
+            <input v-model="nombre" id="nombre" type="text" placeholder="Introduce tu nombre"/>
+            <input v-model="edad" id="edad" type="text" placeholder="Introduce tu edad"/>
+            <input type="submit" value="Añadir usuario"/>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-app.js"> </script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-firestore.js"> </script>
+
+    <script>
+        const config = {
+            apiKey: "AIzaSyBTOrL-XlwkI72wR_HVDYrGtuVWDbOZseE",
+            authDomain: "pruebas-vue-8d32f.firebaseapp.com",
+            projectId: "pruebas-vue-8d32f",
+            storageBucket: "pruebas-vue-8d32f.appspot.com",
+            messagingSenderId: "384000529126",
+            appId: "1:384000529126:web:d643e75ebcbbe13a6e6127"
+        };
+
+        firebase.initializeApp(config);
+        const db = firebase.firestore()
+        const colecion = db.collection('usuarios')
+
+        new Vue({
+            el: '#main',
+            data: {
+                nombre: null,
+                edad: null,
+                usuarios: []
+            },
+            methods: {
+                addUsuario(){
+                    colecion.add({
+                        nombre: this.nombre,
+                        edad: this.edad
+                    }).then(()=>{ this.$mount() })
+                }
+            }
+        })
+    </script>
+</body>
+</html>
